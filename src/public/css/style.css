@@ -32,6 +32,19 @@ div[id="content"] {
   min-height: calc(80vh)
 }
 
+.navbar {
+	position: sticky;
+	top: 0;
+	height: 2.5rem;
+	padding: 10px 10px 0;
+	background-color: var(--primary-color-dark)
+}
+
+.navbar-title {
+	font-size: 1.5rem;
+	color: var(--on-dark);
+}
+
 .bold {
 	font-weight: bold;
 }
