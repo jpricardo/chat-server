@@ -1,0 +1,33 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #191c1c;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffb77d;
+  border-radius: 10px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #e1e3e2;
+  background-color: #191c1c;
+  font-size: 1rem;
+	margin: 0;
+}
+
+a {
+  color: #e1e3e2;
+}
+
+a:visited {
+  color: #f57542;
+}
+
+div[id="content"] {
+  min-height: calc(90vh)
+}

@@ -1,0 +1,24 @@
+:root {
+  --primary-color: black;
+  --primary-color-dark: black;
+  --primary-color-light: grey;
+  --secondary-color: white;
+  --on-dark: white;
+  --on-light: black;
+  --light-background: white;
+  --dark-background: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: var(--light-background);
+    --text-color: var(--on-light);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: var(--dark-background);
+    --text-color: var(--on-dark);
+  }
+}
