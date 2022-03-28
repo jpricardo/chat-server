@@ -6,7 +6,7 @@ module.exports = () => {
 
 	const handlebars = require('express-handlebars');
 	const favicon = require('serve-favicon');
-	const cookieParser = require('cookie-parser');
+	// const cookieParser = require('cookie-parser');
 
 	const app = express();
 	const server = http.createServer(app);
@@ -26,12 +26,12 @@ module.exports = () => {
 	app.set('views', __dirname + '/templates');
 
 	app.use(favicon(path.join(__dirname, './public/images', 'chat.png')));
-	app.use(cookieParser());
-	app.use(config.session);
+	// app.use(cookieParser());
+	// app.use(config.session);
 
 	app.use(middleware.timeLog);
 
-	app.get('/', (req, res) => {
+	app.get('/', (req: any, res: any) => {
 		res.render('index');
 	});
 
