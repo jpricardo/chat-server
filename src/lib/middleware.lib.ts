@@ -3,7 +3,7 @@
 	const timeLog = async function (req: any, res: any, next: any) {
 		const data: Date = new Date();
 		console.log(
-			`[SERVER]` +
+			`[SERVER] ` +
 				`${data.toLocaleString()} ` +
 				`${req.ip} - ` +
 				`${req.method} ` +
