@@ -1,12 +1,16 @@
 :root {
-  --primary-color: #167830;
+  --primary-color: #FF8400;
   --primary-color-dark: #0a2411;
   --primary-color-light: #2edb5c;
-  --secondary-color: white;
+
+  --secondary-color: #232C33;
+	--secondary-color-dark: #090b0d;
+	--secondary-color-light: #A0C1D1;
+
   --on-dark: white;
   --on-light: black;
   --light-background: white;
-  --dark-background: black;
+  --dark-background: #232C33;
 	--background-color: var(--dark-background);
 	--text-color: var(--on-dark);
 }
@@ -23,9 +27,9 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.15);
+  background: #090b0d;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #167830;
+  background: #FF8400;
 }
