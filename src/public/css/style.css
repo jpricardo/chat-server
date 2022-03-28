@@ -14,8 +14,8 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  color: #e1e3e2;
-  background-color: #191c1c;
+  color: var(--on-light);
+  background-color: var(--light-background);
   font-size: 1rem;
 	margin: 0;
 }
@@ -29,5 +29,9 @@ a:visited {
 }
 
 div[id="content"] {
-  min-height: calc(90vh)
+  min-height: calc(80vh)
+}
+
+.bold {
+	font-weight: bold;
 }

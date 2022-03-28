@@ -4,6 +4,10 @@ body {
 	padding-bottom: 3rem;
 }
 
+.info {
+	font-weight: bold;
+}
+
 #form {
 	background: rgba(0, 0, 0, 0.15);
 	padding: 0.25rem;
@@ -40,6 +44,25 @@ body {
 	color: #fff;
 }
 
+#messages {
+	font-family: monospace;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#messages > li {
+	padding: 0.5rem 1rem;
+}
+
+/* #messages > li::before {
+	content: "\00BB";
+} */
+
+.dark {
+	background: #efefef;
+}
+
 </style>
 <ul id="messages"></ul>
 <form id="form" action="">
@@ -51,15 +74,55 @@ body {
 <script>
 const socket = io();
 
-var form = document.getElementById('form');
-var input = document.getElementById('input');
+const messages = document.getElementById('messages');
+const form = document.getElementById('form');
+const input = document.getElementById('input');
+
+const createEntry = (container, content, decorator=false, className=null) => {
+	const item = document.createElement('li');
+	let text = ''
+
+	if(decorator) {
+		text = `[${new Date().toLocaleTimeString()}] >> ${content}`
+	} else {
+		text = content
+	}
+
+	if(className){
+		item.classList.add(className)
+	}
+
+	item.textContent = text;
+	container.appendChild(item);
+	window.scrollTo(0, document.body.scrollHeight);
+}
+
+window.onload = () => {
+	createEntry(messages, 'Bem vindo à sala!', false, 'info');
+}
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
 	if (input.value) {
-		socket.emit('chat message', input.value);
+		const msg = input.value;
+		socket.emit('chat message', msg);
+		createEntry(messages, msg, true);
 		input.value = '';
 	}
 });
+
+socket.on('chat message', (msg) => {
+	const item = document.createElement('li');
+	createEntry(messages, msg, true, 'dark');
+});
+
+socket.on('joined', (msg) => {
+	const item = document.createElement('li');
+	createEntry(messages, msg, false, 'info');
+})
+
+socket.on('left', (msg) => {
+	createEntry(messages, msg, false, 'info');
+})
 
 </script>

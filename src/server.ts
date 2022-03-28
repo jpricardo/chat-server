@@ -2,7 +2,6 @@
 module.exports = () => {
 	const express = require('express');
 	const http = require('http');
-	const socketIo = require('socket.io');
 	const path = require('path');
 
 	const handlebars = require('express-handlebars');
@@ -11,10 +10,10 @@ module.exports = () => {
 
 	const app = express();
 	const server = http.createServer(app);
-	const io = new socketIo.Server(server);
 
 	const config = require('./config/server.config');
 	const middleware = require('./lib/middleware.lib');
+	require('./controllers/websocket.controller').config(server);
 
 	const hbs = handlebars.create({
 		partialsDir: path.join(__dirname, './templates', '/partials'),
@@ -37,8 +36,6 @@ module.exports = () => {
 	});
 
 	app.use('/public', express.static(path.join(__dirname, './public')));
-
-	io.on('connection', middleware.connLog);
 
 	server.listen(config.port, () => {
 		console.log(`[SERVER] Servidor ouvindo na porta ${config.port}`);

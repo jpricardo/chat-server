@@ -13,20 +13,7 @@
 		next();
 	};
 
-	const connLog = async function (socket) {
-		console.log(`[WEBSOCKET] Usuário se conectou!`);
-
-		socket.on('disconnect', () => {
-			console.log(`[WEBSOCKET] Usuário desconectado!`);
-		});
-
-		socket.on('chat message', (msg) => {
-			console.log(`[WEBSOCKET] Nova mensagem => ${msg}`);
-		});
-	};
-
 	module.exports = {
 		timeLog,
-		connLog,
 	};
 })();
