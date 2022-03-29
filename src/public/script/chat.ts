@@ -5,6 +5,7 @@ const socket = io();
 const messages = document.getElementById('messages');
 const form = document.getElementById('form');
 const input: HTMLInputElement = document.getElementById('input');
+const online = document.getElementById('online');
 
 const createEntry = (
 	container: HTMLElement,
@@ -63,6 +64,10 @@ form.addEventListener('submit', (e) => {
 socket.on('connect', () => {
 	const credentials = { name: username, userId: socket.id };
 	socket.emit('setId', credentials);
+});
+
+socket.on('online', (val) => {
+	online.textContent = ` - ${val.data} Online`;
 });
 
 socket.on('chat message', (msg) => {
