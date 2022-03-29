@@ -36,6 +36,7 @@
 				const user = findUser(socket.id);
 				if (!user) {
 					console.log('usuário não encontrado');
+					return;
 				}
 				console.log(`[WEBSOCKET] Usuário ${user.name} desconectado!`);
 				const msg = { data: `${user.name} deixou a sala...` };
