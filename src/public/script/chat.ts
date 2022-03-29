@@ -45,6 +45,8 @@ window.onload = () => {
 		false,
 		'info'
 	);
+
+	input.focus();
 };
 
 form.addEventListener('submit', (e) => {
@@ -54,6 +56,7 @@ form.addEventListener('submit', (e) => {
 		socket.emit('chat message', msg);
 		createEntry(messages, msg, true);
 		input.value = '';
+		input.focus();
 	}
 });
 
