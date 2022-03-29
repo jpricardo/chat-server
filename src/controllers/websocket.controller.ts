@@ -5,11 +5,21 @@
 		const io = new socketIo.Server(server);
 		io.on('connection', (socket) => {
 			console.log(`[WEBSOCKET] Usuário se conectou!`);
-			socket.broadcast.emit('joined', 'Usuário se juntou!');
+			socket.broadcast.emit(
+				'joined',
+				JSON.stringify({
+					user: null,
+					data: 'Usuário se juntou!',
+				})
+			);
 
 			socket.on('disconnect', () => {
 				console.log(`[WEBSOCKET] Usuário desconectado!`);
-				socket.broadcast.emit('left', 'Usuário deixou a sala...');
+				const msg = JSON.stringify({
+					user: null,
+					data: 'Usuário deixou a sala...',
+				});
+				socket.broadcast.emit('left', msg);
 			});
 
 			socket.on('chat message', (msg) => {
