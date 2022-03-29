@@ -22,7 +22,7 @@
 		"typeRoots": [
 			"node_modules/@types"
 		],
-		"types": ["node", "express"]
+		"types": ["node", "express", "react"]
 	},
 	"filesGlob": [
 		"**/*.ts",

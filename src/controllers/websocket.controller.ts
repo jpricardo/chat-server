@@ -40,6 +40,7 @@
 				socket.broadcast.emit('chat message', {
 					name: user.name,
 					data: msg.data,
+					type: msg.type,
 				});
 			});
 
