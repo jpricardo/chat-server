@@ -1,4 +1,4 @@
-let username;
+let username: string;
 
 const socket = io();
 
@@ -9,7 +9,7 @@ const online = document.getElementById('online');
 
 const createEntry = (
 	container: HTMLElement,
-	content: string | { name: string | undefined; data: string },
+	content: { name?: string; data: string },
 	decorator = false,
 	className: string = ''
 ) => {
