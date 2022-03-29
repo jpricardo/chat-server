@@ -16,13 +16,16 @@ a:visited {
 }
 
 div[id="content"] {
+	padding-top: 2.5rem;
   min-height: calc(80vh)
 }
 
 .navbar {
-	position: sticky;
+	position: fixed;
 	top: 0;
-	height: 2.5rem;
+	right: 0;
+	left: 0;
+	height: 2rem;
 	padding: 10px 10px 0;
 	background-color: var(--secondary-color-dark)
 }
