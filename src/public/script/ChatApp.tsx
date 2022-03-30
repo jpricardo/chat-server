@@ -1,27 +1,43 @@
 'use strict';
 
+class Message extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return <li className={this.props.className}>{this.props.text}</li>;
+	}
+}
+
 class Messages extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			content: this.props.content,
+			username: this.props.username,
 		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState(nextProps);
 	}
 
 	listarMensagens(messages) {
 		return messages.map(
 			(item: { data: string; type: string; name?: string }) => {
-				if (item.type === 'info') {
-					return <li className={'info'}>{item.data}</li>;
-				} else if ((item.type = 'message')) {
-					return (
-						<li className={item.name === this.state.username ? '' : 'dark'}>
-							{item.name}
-							{' >> '}
-							{item.data}
-						</li>
-					);
-				}
+				const className =
+					item.type === 'info'
+						? 'info'
+						: item.name === this.state.username
+						? ''
+						: 'dark';
+				const text =
+					item.type === 'message'
+						? `[${item.timeStamp}] ${item.name} >> ${item.data}`
+						: `${item.data}`;
+
+				return <Message text={text} className={className} />;
 			}
 		);
 	}
@@ -35,27 +51,27 @@ class Messages extends React.Component {
 class InputForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { value: '' };
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		this.state = { value: this.props.value };
+		// this.handleChange = this.handleChange.bind(this);
+		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange(event) {
-		this.setState({ value: event.target.value });
+	componentWillReceiveProps(nextProps) {
+		this.setState(nextProps);
 	}
 
-	handleSubmit(e) {
-		this.props.handleSubmit(e, this);
-	}
+	// handleSubmit(e) {
+	// 	this.props.handleSubmit(e, this);
+	// }
 
 	render() {
 		return (
-			<form id={'form'} onSubmit={this.handleSubmit}>
+			<form id={'form'} onSubmit={this.props.handleSubmit}>
 				<input
 					value={this.state.value}
 					id={'input'}
 					autocomplete={'off'}
-					onChange={this.handleChange}
+					onChange={this.props.handleChange}
 				/>
 				<button type={'submit'} className={'btn-primary'}>
 					Enviar
@@ -90,33 +106,45 @@ class Chat extends React.Component {
 			messages: this.props.messages,
 			socket: socket,
 			username: this.props.username,
+			value: '',
 		};
 		this.onSubmit.bind(this);
+		this.onChange.bind(this);
 	}
 
 	addItem(content: { data: string; name?: string; type: string }) {
 		const messages = [...this.state.messages].concat([...[content]]);
 		this.setState({ messages: messages });
+		window.scrollTo(0, document.body.scrollHeight);
 	}
 
-	onSubmit(e, form) {
+	onChange(e) {
+		this.setState({ value: event.target.value });
+	}
+
+	onSubmit(e) {
 		e.preventDefault();
-		console.log(this);
-		const value = form.state.value;
+		const value = this.state.value;
 		if (value !== '') {
 			console.log('Submeteu!', value);
 		}
-		form.setState({ value: '' });
+		this.setState({ value: '' });
 		this.state.socket.emit('chat message', { data: value, type: 'message' });
 	}
 
 	render() {
 		return (
-			<>
-				<h2>{'Chat'}</h2>
-				<Messages content={this.state.messages} />
-				<InputForm handleSubmit={this.onSubmit} />
-			</>
+			<React.StrictMode>
+				<Messages
+					username={this.state.username}
+					content={this.state.messages}
+				/>
+				<InputForm
+					value={this.state.value}
+					handleChange={(e) => this.onChange(e)}
+					handleSubmit={(e) => this.onSubmit(e)}
+				/>
+			</React.StrictMode>
 		);
 	}
 }

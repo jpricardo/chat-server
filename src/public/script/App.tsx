@@ -22,9 +22,10 @@ class App extends React.Component {
 	}
 	render() {
 		const messages = [
-			{ data: 'Mensagem1' },
-			{ data: 'Mensagem2' },
-			{ data: 'Mensagem3' },
+			{
+				type: 'info',
+				data: `Bem vindo, ${this.state.username}`,
+			},
 		];
 		return (
 			<Chat

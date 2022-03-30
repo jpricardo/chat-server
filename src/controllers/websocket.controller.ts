@@ -24,7 +24,8 @@
 			socket.on('setId', (data) => {
 				webSocket.log(`Novo usuário: ${data.name}`);
 				socket.broadcast.emit('joined', {
-					data: `Usuário ${data.name} se juntou!`,
+					data: `${data.name} se juntou!`,
+					type: 'info',
 				});
 				users.push(data);
 				atualizarOnline();
@@ -37,10 +38,11 @@
 					return;
 				}
 				webSocket.log(`${user.name} diz: ${msg.data}`);
-				socket.broadcast.emit('chat message', {
+				io.emit('chat message', {
 					name: user.name,
 					data: msg.data,
 					type: msg.type,
+					timeStamp: new Date().toLocaleString(),
 				});
 			});
 
@@ -51,7 +53,7 @@
 					return;
 				} else {
 					webSocket.log(`Usuário ${user.name} desconectado!`);
-					const msg = { data: `${user.name} deixou a sala...` };
+					const msg = { data: `${user.name} deixou a sala...`, type: 'info' };
 					users.splice(users.indexOf(user), 1);
 					socket.broadcast.emit('left', msg);
 					atualizarOnline();
