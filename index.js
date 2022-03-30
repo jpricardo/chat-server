@@ -1,4 +1,4 @@
-'use strict';
-const server = require('./dist/server');
+"use strict";
+const server = require("./src/server");
 
 server();

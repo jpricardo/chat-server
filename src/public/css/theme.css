@@ -1,35 +1,16 @@
 :root {
-  --primary-color: #FF8400;
+  --primary-color: #ff8400;
   --primary-color-dark: #0a2411;
   --primary-color-light: #2edb5c;
 
-  --secondary-color: #232C33;
-	--secondary-color-dark: #090b0d;
-	--secondary-color-light: #A0C1D1;
+  --secondary-color: #232c33;
+  --secondary-color-dark: #090b0d;
+  --secondary-color-light: #a0c1d1;
 
   --on-dark: white;
   --on-light: black;
   --light-background: white;
-  --dark-background: #232C33;
-	--background-color: var(--dark-background);
-	--text-color: var(--on-dark);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-color: var(--light-background);
-    --text-color: var(--on-light);
-  }
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: #090b0d;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #FF8400;
+  --dark-background: #232c33;
+  --background-color: var(--dark-background);
+  --text-color: var(--on-dark);
 }

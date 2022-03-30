@@ -1,79 +1,23 @@
 <style>
 
-body {
-	padding-bottom: 3rem;
-}
 
-
-#form {
-	background: var(--secondary-color-dark);
-	padding: 0.25rem;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	display: flex;
-	height: 3rem;
-	box-sizing:
-	border-box;
-	backdrop-filter: blur(10px);
-}
-
-#input {
-	border: none;
-	padding: 0 0.5rem;
-	flex-grow: 1;
-	border-radius: 5px;
-	margin: 0.25rem;
-}
-
-#input:focus {
-	outline: none;
-}
-
-#form > button {
-	background: var(--primary-color);
-	border: none;
-	padding: 0 1rem;
-	margin: 0.25rem;
-	border-radius: 3px;
-	outline: none;
-	color: var(--on-dark);
-}
-
-#messages {
-	font-family: monospace;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-#messages > li {
-	padding: 0.5rem 1rem;
-	border-bottom: 1px dashed rgba(0,0,0, 0.2);
-}
-
-/* #messages > li::before {
-content: "\00BB";
-} */
-
-.info {
-	font-style: italic;
-}
-
-.dark {
-	background: rgba(0,0,0,0.25);
-	/* color: var(--on-dark); */
-}
 
 </style>
-<!-- <ul id="messages"></ul>
-<form id="form" action="">
-<input id="input" autocomplete="off">
-<button class="">Send</button>
-</form>
+<div class="box">
+	<form class="form-inline" id="form">
 
-<script src="/public/script/chat.js"></script> -->
-<div id="app-root"></div>
+		<div class="form-group">
+			<div class="col g-0">
+				<input class="form-control" id="input" type="file">
+			</div>
+			<div class="col g-0">
+				<button class="btn btn-primary">Enviar!</button>
+			</div>
+		</div>
+	</form>
+
+	<div id="resultado"></div>
+</div>
+
 <script src="/socket.io/socket.io.js"></script>
-<script type="module" src="/public/script/chat/App.js"></script>
+<script type="module" src="/public/script/index.js"></script>
