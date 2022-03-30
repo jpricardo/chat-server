@@ -2,7 +2,13 @@
 // import Tabs from './Tabs.js';
 import Chat from './ChatApp.js';
 
-class App extends React.Component {
+interface IProps {}
+
+interface IState {
+	socket: any;
+	username: string;
+}
+class App extends React.Component<IProps, IState> {
 	constructor(props) {
 		super(props);
 		let username: string;
@@ -11,17 +17,18 @@ class App extends React.Component {
 		}
 		const socket = io();
 
-		// socket.on('online', (val) => {
-		// 	online.textContent = ` - ${val.data} Online`;
-		// });
-
 		this.state = {
 			socket: socket,
 			username: username,
 		};
 	}
 	render() {
-		const messages = [
+		const messages: {
+			data: string;
+			type: string;
+			name?: string;
+			timeStamp?: string;
+		}[] = [
 			{
 				type: 'info',
 				data: `Bem vindo, ${this.state.username}`,
