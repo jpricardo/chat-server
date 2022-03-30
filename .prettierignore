@@ -5,6 +5,7 @@
 *.json
 *.md
 *.css
+Dockerfile
 
 package-lock.json
 
