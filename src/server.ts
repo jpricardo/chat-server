@@ -8,11 +8,15 @@ module.exports = () => {
 	const favicon = require('serve-favicon');
 	// const cookieParser = require('cookie-parser');
 
+	// Configurações do express / http
 	const app = express();
 	const server = http.createServer(app);
 
+	// Arquivos de config
 	const config = require('./config/server.config');
 	const middleware = require('./lib/middleware.lib');
+
+	// Configurações do socket
 	require('./controllers/websocket.controller').config(server);
 
 	const hbs = handlebars.create({
