@@ -12,11 +12,31 @@
 <body>
 
 	<div id="navbar">
-		{{> navbar }}
+		<nav class="navbar navbar-light">
+			<span class="navbar-brand">Envie sua prova!<span id="online"></span></span>
+		</nav>
 	</div>
 
 	<div id="content">
-		{{{body}}}
+
+		<div class="box">
+			<form class="form-inline" id="form">
+
+				<div class="form-group">
+					<div class="col g-0">
+						<input class="form-control" id="input" type="file">
+					</div>
+					<div class="col g-0">
+						<button class="btn btn-primary" id="button">Enviar!</button>
+					</div>
+				</div>
+			</form>
+
+			<div id="resultado"></div>
+		</div>
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script type="module" src="/public/script/index.js"></script>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
