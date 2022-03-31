@@ -86,6 +86,7 @@ module.exports = () => {
         const gabarito = parseTxt(data);
         socket.emit('resultado',{ data: corrigirProva(prova, gabarito) });
       } catch (err) {
+        socket.emit('erro', {data: 'erro'})
         console.error(err);
       }
     })
