@@ -1,5 +1,5 @@
 {
-  "name": "chat-server",
+  "name": "correcao-app",
   "version": "1.0.0",
   "description": "App de correção de provas, usando Socket.io e Express",
   "main": "index.js",
